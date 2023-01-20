@@ -4,6 +4,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Exe</OutputType>
+    <StartupObject>HotelManagement.Api.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
