@@ -15,7 +15,7 @@ namespace HotelManagement.Api
 {
     public class Program
     {
-        
+
         public static void Main(string[] args)
         {
 
@@ -38,11 +38,11 @@ namespace HotelManagement.Api
 
             builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
             (builder.Configuration.GetConnectionString("ConnStr")));
-            
+
 
             //builder.Services.AddControllers();
             // Configure Mailing Service
-           builder.Services.ConfigureMailService(config);
+            builder.Services.ConfigureMailService(config);
 
 
             builder.Services.AddSingleton(Log.Logger);
@@ -72,7 +72,7 @@ namespace HotelManagement.Api
 
             builder.Services.AddMvc().AddFluentValidation(fv =>
             {
-                fv.DisableDataAnnotationsValidation = true; 
+                fv.DisableDataAnnotationsValidation = true;
                 fv.RegisterValidatorsFromAssemblyContaining<Program>();
                 fv.ImplicitlyValidateChildProperties = true;
             });
@@ -105,7 +105,7 @@ namespace HotelManagement.Api
             });
 
             Seeder.SeedData(app).Wait();
-             
+
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
