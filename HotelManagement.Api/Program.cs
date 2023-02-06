@@ -81,7 +81,7 @@ namespace HotelManagement.Api
 
             builder.Services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                c.AddPolicy("CorsPolicy", options => { options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();}) ;
             });
 
             // Register Dependency Injection Service Extension
@@ -97,6 +97,12 @@ namespace HotelManagement.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:3001");
+                await next();
+            });
 
             Seeder.SeedData(app).Wait();
              
