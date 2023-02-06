@@ -14,7 +14,7 @@ namespace HotelManagement.Infrastructure.Repositories
     {
         private readonly HotelDbContext _context;
 
-        public ManagerRequestRepository(HotelDbContext hotelDbContext, IUnitOfWork unitOfWork) : base(hotelDbContext)
+        public ManagerRequestRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
         {
             _context = hotelDbContext;
         }
@@ -24,5 +24,7 @@ namespace HotelManagement.Infrastructure.Repositories
             var managerRequest = await _context.ManagerRequests.Where(manager => manager.Id == managerId).FirstOrDefaultAsync();
             return managerRequest;
         }
+
+       
     }
 }

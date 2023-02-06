@@ -23,13 +23,13 @@ namespace HotelManagement.Api.Controllers
         {
             var register = await _authenticationService.Register(user);
             if(register.Succeeded == true) return Ok(register);
-            return BadRequest(register);
+            return Ok(register);
         }
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
             var login = await _authenticationService.Login(model);
-            if (login.Succeeded == false) return Unauthorized(login);
+            //if (login.Succeeded == false) return BadRequest(login);
             return Ok(login);
         }
 
@@ -39,16 +39,14 @@ namespace HotelManagement.Api.Controllers
         public async Task<IActionResult> RefreshToken()
         {
             var token = await _authenticationService.RefreshToken();
-            if(token.Succeeded == false) return BadRequest(token);
             return Ok(token);
         }
 
+        [Authorize]
         [HttpPost("Change-Password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDTO model)
         {
             var result = await _authenticationService.ChangePassword(model);
-            if (result.ToString().Contains("login")) return Unauthorized(result);
-            if (result.ToString().Contains("character")) return BadRequest(result);
             return Ok(result);
         }
 
@@ -60,7 +58,7 @@ namespace HotelManagement.Api.Controllers
         }
 
         [HttpPost("Reset-Update-Password")]
-        public async Task<IActionResult> ResetUpdatePassword([FromBody] UpdatePasswordDTO model, string Token)
+        public async Task<IActionResult> ResetUpdatePassword([FromBody] UpdatePasswordDTO model)
         {
             var result = await _authenticationService.ResetPasswordAsync(model);
             return Ok(result);

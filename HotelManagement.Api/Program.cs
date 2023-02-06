@@ -100,7 +100,7 @@ namespace HotelManagement.Api
 
             app.Use(async (context, next) =>
             {
-                context.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:3001");
+                context.Response.Headers.Add("Access-Control-Allow-rigin", "http://localhost:3001");
                 await next();
             });
 

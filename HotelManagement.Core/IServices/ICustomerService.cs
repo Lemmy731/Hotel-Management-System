@@ -14,5 +14,7 @@ namespace HotelManagement.Core.IServices
         Task<Response<IEnumerable<GetCustomerDto>>> GetCustomers(int pageNo);
         Task<Response<string>> AddCustomerAddress(AddCustomerAddressDto address);
         Task<Response<List<Customer>>> GetTopHotelCustomers(string hotelId);
+        Task<Response<List<GetCustomersByHotelDto>>>GetCustomersByHotelId(string hotelId);
+        Task<Response<Customer>> GetCustomer(string Id);
     }
 }
